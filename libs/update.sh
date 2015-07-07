@@ -15,14 +15,14 @@ tar xvzf $ZMQ.tar.gz
 
 pushd $ZMQ
 ./configure
-cp -r include $ZMQ_DIR
-cp -r src $ZMQ_DIR
-cp COPYING $ZMQ_DIR
+cp -R include "$ZMQ_DIR"
+cp -R src "$ZMQ_DIR"
+cp COPYING "$ZMQ_DIR"
 popd
 
 git clone https://github.com/zeromq/cppzmq.git
 pushd cppzmq
-cp zmq.hpp $ZMQ_DIR/include
+cp zmq.hpp "$ZMQ_DIR/include"
 popd
 
 popd
