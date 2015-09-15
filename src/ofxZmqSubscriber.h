@@ -10,6 +10,8 @@ public:
 	ofxZmqSubscriber();
 	
 	void connect(string addr);
+	void disconnect();
+
 	void setFilter(string filter);
 
 	bool receive(string &data);
@@ -22,5 +24,4 @@ public:
 private:
 	
 	string filter;
-	
 };

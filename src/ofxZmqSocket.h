@@ -14,6 +14,9 @@ public:
 	void setIdentity(string data);
 	string getIdentity();
 
+	bool getConnected();
+	string getConnectedAddr();
+	string getBoundAddr();
 
 	void setHighWaterMark(long maxQueueSize);
 	void setSendHighWaterMark(long maxQueueSize);
@@ -31,7 +34,11 @@ protected:
 	ofxZmqSocket(int type);
 
 	void connect(string addr);
+	void disconnect();
+	void disconnect(string addr);
 	void bind(string addr);
+	void unbind();
+	void unbind(string addr);
 
 	bool send(const void *data, size_t len, bool nonblocking, bool more);
 	bool send(void *data, size_t len, bool nonblocking, bool more);
@@ -46,5 +53,8 @@ protected:
 	// return true if has more flag
 	bool getNextMessage(string &data);
 	bool getNextMessage(ofBuffer &data);
+
+	string connectedAddr;
+	string boundAddr;
 
 };
