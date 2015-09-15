@@ -10,6 +10,11 @@ void ofxZmqSubscriber::connect(string addr)
 	ofxZmqSocket::connect(addr);
 }
 
+void ofxZmqSubscriber::disconnect()
+{
+	ofxZmqSocket::disconnect();
+}
+
 bool ofxZmqSubscriber::receive(string &data)
 {
 	return ofxZmqSocket::receive(data);

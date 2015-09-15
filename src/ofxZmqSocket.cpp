@@ -27,14 +27,55 @@ ofxZmqSocket::~ofxZmqSocket()
 {
 }
 
+bool ofxZmqSocket::getConnected()
+{
+	return socket.connected();
+}
+
+string ofxZmqSocket::getConnectedAddr()
+{
+	return connectedAddr;
+}
+
+string ofxZmqSocket::getBoundAddr()
+{
+	return boundAddr;
+}
+
 void ofxZmqSocket::connect(string addr)
 {
 	socket.connect(addr.c_str());
+	connectedAddr = addr;
+}
+
+void ofxZmqSocket::disconnect()
+{
+	socket.disconnect(connectedAddr.c_str());
+	connectedAddr.clear();
+}
+
+void ofxZmqSocket::disconnect(string addr)
+{
+	socket.connect(addr.c_str());
+	connectedAddr.clear();
 }
 
 void ofxZmqSocket::bind(string addr)
 {
 	socket.bind(addr.c_str());
+	boundAddr = addr;
+}
+
+void ofxZmqSocket::unbind()
+{
+	socket.unbind(connectedAddr.c_str());
+	boundAddr.clear();
+}
+
+void ofxZmqSocket::unbind(string addr)
+{
+	socket.unbind(addr.c_str());
+	boundAddr.clear();
 }
 
 bool ofxZmqSocket::send(const void *data, size_t len, bool nonblocking, bool more)
